@@ -1,0 +1,16 @@
+name: Version & Changelog
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  version:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: google-github-actions/release-please-action@v3
+        with:
+          release-type: node
+          package-name: "aws-constructs"
+          token: ${{ secrets.RELEASE_PLEASE_TOKEN }}

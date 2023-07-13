@@ -1,0 +1,39 @@
+name: Continuous Integration
+
+on: pull_request
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      matrix:
+        # These correlate to the latest two runtimes supported by Lambda
+        # See: https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html
+        node: [ 16, 18 ]
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node }}
+      - run: npm version
+      - run: npm ci
+      - run: npm run build
+
+  unit-test:
+    needs: [build]
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      matrix:
+        # These correlate to the latest two runtimes supported by Lambda
+        # See: https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html
+        node: [ 16, 18 ]
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node }}
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run test

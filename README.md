@@ -2,7 +2,7 @@
 This repo contains thin wrappers for CDK constructs to ensure a consistent standard is applied to generated cloud resources and to avoid repetitive boilerplate code.
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-6-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-7-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 ## Preamble
@@ -296,6 +296,7 @@ const logLevel = utils.getContextByPath(
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/cailitin"><img src="https://avatars.githubusercontent.com/u/16785787?v=4?s=100" width="100px;" alt="Georgia Georgiou"/><br /><sub><b>Georgia Georgiou</b></sub></a><br /><a href="https://github.com/cuckoointernet/aws-constructs/commits?author=cailitin" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/lukeaswift"><img src="https://avatars.githubusercontent.com/u/92876806?v=4?s=100" width="100px;" alt="Luke Swift"/><br /><sub><b>Luke Swift</b></sub></a><br /><a href="https://github.com/cuckoointernet/aws-constructs/commits?author=lukeaswift" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="http://benparnell.com"><img src="https://avatars.githubusercontent.com/u/3385899?v=4?s=100" width="100px;" alt="Ben Parnell"/><br /><sub><b>Ben Parnell</b></sub></a><br /><a href="https://github.com/cuckoointernet/aws-constructs/commits?author=benjaminparnell" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/dmsolutionz"><img src="https://avatars.githubusercontent.com/u/12456115?v=4?s=100" width="100px;" alt="Dan"/><br /><sub><b>Dan</b></sub></a><br /><a href="https://github.com/cuckoointernet/aws-constructs/commits?author=dmsolutionz" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>

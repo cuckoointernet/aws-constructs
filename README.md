@@ -1,9 +1,9 @@
 # AWS Constructs
+This repo contains thin wrappers for CDK constructs to ensure a consistent standard is applied to generated cloud resources and to avoid repetitive boilerplate code.
+
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
-
-This repo contains thin wrappers for CDK constructs to ensure a consistent standard is applied to generated cloud resources and to avoid repetitive boilerplate code.
 
 ## Preamble
 There are a few conventions when using this library to be aware of.

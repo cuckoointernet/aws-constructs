@@ -65,7 +65,7 @@ As well as the [usual defaults](https://docs.aws.amazon.com/cdk/api/v2/docs/aws-
 - An alarm to report when the function execution times are approaching their max timeout (>75% threshold)
 - An alarm to report when the function is repeatedly throttled
 - An alarm to report when the function memory utilization is >75% (only available if `insightsVersion` is configured)
-- Alarms that trigger will send notifications to an SNS topic specified via the [CDK context](https://docs.aws.amazon.com/cdk/v2/guide/context.html) value `<customer>.<environment>.alarmNotificationsTopic`
+- Alarms that trigger will send notifications for OK or in alarm state, to an SNS topic specified via the [CDK context](https://docs.aws.amazon.com/cdk/v2/guide/context.html) value `<customer>.<environment>.alarmNotificationsTopic`
 - You can override the default alarms by providing a 4th parameter to customise their configuration
 - You can configure access to SSM Parameters by providing the `ssmParameterPaths` property via the 4th parameter
 

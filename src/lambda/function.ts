@@ -187,10 +187,17 @@ export class Function extends lambda.Function {
       );
 
       this.errorsAlarm.addAlarmAction(new cw_actions.SnsAction(alarmTopic));
+      this.errorsAlarm.addOkAction(new cw_actions.SnsAction(alarmTopic));
       this.durationAlarm.addAlarmAction(new cw_actions.SnsAction(alarmTopic));
+      this.durationAlarm.addOkAction(new cw_actions.SnsAction(alarmTopic));
       this.throttlesAlarm.addAlarmAction(new cw_actions.SnsAction(alarmTopic));
+      this.throttlesAlarm.addOkAction(new cw_actions.SnsAction(alarmTopic));
+
       if (this.memoryUtilizationAlarm) {
         this.memoryUtilizationAlarm.addAlarmAction(
+          new cw_actions.SnsAction(alarmTopic)
+        );
+        this.memoryUtilizationAlarm.addOkAction(
           new cw_actions.SnsAction(alarmTopic)
         );
       }

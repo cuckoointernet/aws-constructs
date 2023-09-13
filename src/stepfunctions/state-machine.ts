@@ -3,7 +3,7 @@ import * as cloudwatch from "aws-cdk-lib/aws-cloudwatch";
 import * as cw_actions from "aws-cdk-lib/aws-cloudwatch-actions";
 import * as sfn from "aws-cdk-lib/aws-stepfunctions";
 import * as sns from "aws-cdk-lib/aws-sns";
-import { Construct } from "constructs";
+import { type Construct } from "constructs";
 import { getContextByPath } from "../utils/context-by-path";
 
 type CustomAlarmOptions = Omit<
@@ -11,11 +11,11 @@ type CustomAlarmOptions = Omit<
   "alarmDescription"
 >;
 
-interface CustomStateMachineProps {
+type CustomStateMachineProps = {
   failedExecutionsAlarmOptions?: CustomAlarmOptions;
   timedOutExecutionsAlarmOptions?: CustomAlarmOptions;
   disableAlarmNotifications?: boolean;
-}
+};
 
 /**
  * As well as the [usual defaults](https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.aws_stepfunctions.StateMachine.html#construct-props), this construct will additionally configure the following for you:

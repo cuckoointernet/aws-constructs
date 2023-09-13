@@ -1,4 +1,4 @@
-import { Construct } from "constructs";
+import { type Construct } from "constructs";
 import * as sqs from "aws-cdk-lib/aws-sqs";
 import * as cdk from "aws-cdk-lib";
 import * as sns from "aws-cdk-lib/aws-sns";
@@ -11,10 +11,10 @@ type CustomAlarmOptions = Omit<
   "alarmDescription"
 >;
 
-interface CustomQueueProps {
+type CustomQueueProps = {
   disableAlarmNotifications?: boolean;
   messagesNotVisibleAlarmOptions?: CustomAlarmOptions;
-}
+};
 
 /**
  * As well as the [usual defaults](https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.aws_sqs.Queue.html#construct-props), this construct will additionally configure the following for you:

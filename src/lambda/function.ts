@@ -1,4 +1,4 @@
-import { Construct } from "constructs";
+import { type Construct } from "constructs";
 import * as logs from "aws-cdk-lib/aws-logs";
 import * as cdk from "aws-cdk-lib";
 import * as lambda from "aws-cdk-lib/aws-lambda";
@@ -14,14 +14,14 @@ type CustomAlarmOptions = Omit<
   "alarmDescription"
 >;
 
-interface CustomLambdaProps {
+type CustomLambdaProps = {
   errorsAlarmOptions?: CustomAlarmOptions;
   throttlesAlarmOptions?: CustomAlarmOptions;
   durationAlarmOptions?: CustomAlarmOptions;
   memoryUtilizationAlarmOptions?: CustomAlarmOptions;
   disableAlarmNotifications?: boolean;
   ssmParameterPaths?: string[];
-}
+};
 
 /**
  * As well as the [usual defaults](https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.aws_lambda.Function.html#construct-props), this construct will additionally configure the following for you:

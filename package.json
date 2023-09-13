@@ -27,7 +27,7 @@
     "constructs": "^10.1.52"
   },
   "devDependencies": {
-    "@tsconfig/node18": "1.0.3",
+    "@tsconfig/node18": "18.2.2",
     "@types/get-value": "3.0.3",
     "@types/jest": "29.5.3",
     "@types/node": "18.16.19",

@@ -1,6 +1,6 @@
 /* eslint-disable no-new */
 import * as cdk from "aws-cdk-lib";
-import { Construct } from "constructs";
+import { type Construct } from "constructs";
 import * as sfn from "aws-cdk-lib/aws-stepfunctions";
 import { Match, Template } from "aws-cdk-lib/assertions";
 import { TreatMissingData } from "aws-cdk-lib/aws-cloudwatch";

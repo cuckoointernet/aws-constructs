@@ -1,7 +1,7 @@
 /* eslint-disable no-new, unicorn/prefer-module */
 import path from "path";
 import * as cdk from "aws-cdk-lib";
-import { Construct } from "constructs";
+import { type Construct } from "constructs";
 import { Match, Template } from "aws-cdk-lib/assertions";
 import * as lambda from "aws-cdk-lib/aws-lambda";
 import { RetentionDays } from "aws-cdk-lib/aws-logs";

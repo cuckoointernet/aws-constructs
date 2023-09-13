@@ -1,5 +1,5 @@
 /* eslint-disable no-new */
-import { Construct } from "constructs";
+import { type Construct } from "constructs";
 import * as cdk from "aws-cdk-lib";
 import { AttributeType } from "aws-cdk-lib/aws-dynamodb";
 import { Capture, Match, Template } from "aws-cdk-lib/assertions";

@@ -1,5 +1,5 @@
 import getValue from "get-value";
-import { Construct } from "constructs";
+import { type Construct } from "constructs";
 
 /**
  * A utility function that can be used to retrieve a _nested_ value from the [CDK context](https://docs.aws.amazon.com/cdk/v2/guide/context.html).

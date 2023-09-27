@@ -1,23 +1,27 @@
 # AWS Constructs
+
 This repo contains thin wrappers for CDK constructs to ensure a consistent standard is applied to generated cloud resources and to avoid repetitive boilerplate code.
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+
 [![All Contributors](https://img.shields.io/badge/all_contributors-7-orange.svg?style=flat-square)](#contributors-)
+
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 ## Preamble
+
 There are a few conventions when using this library to be aware of.
 
-1. Constructs expect the CDK [context values](https://docs.aws.amazon.com/cdk/v2/guide/cli.html#w53aac33b7c33c11) `ENVIRONMENT` and `CUSTOMER` to be declared via the CLI:
-   2. `ENVIRONMENT` - eg: `dev`, `stage`, `prod` etc but you can use whatever you want
-   3. `CUSTOMER` - a string representing the end client of your software. This library is built with a SaaS mindset, where each customer can have their own configuration. If this doesn't apply to you we recommend simply using your own business name.
+1. Constructs expect the CDK [context values](https://docs.aws.amazon.com/cdk/v2/guide/cli.html#w53aac33b7c33c11) `ENVIRONMENT` and `CUSTOMER` to be declared via the CLI: 2. `ENVIRONMENT` - eg: `dev`, `stage`, `prod` etc but you can use whatever you want 3. `CUSTOMER` - a string representing the end client of your software. This library is built with a SaaS mindset, where each customer can have their own configuration. If this doesn't apply to you we recommend simply using your own business name.
 2. Your `cdk.context.json` [file](https://docs.aws.amazon.com/cdk/v2/guide/context.html) should adopt a structure of:
 
 ```json
 {
-  "cuckoo": {               // <--- customer(s)
-    "prod": {               // <--- environment(s)
-      "logLevel": "debug"   // <--- option(s)
+  "cuckoo": {
+    // <--- customer(s)
+    "prod": {
+      // <--- environment(s)
+      "logLevel": "debug" // <--- option(s)
     }
   }
 }
@@ -76,7 +80,12 @@ import * as lambda from "aws-cdk-lib/aws-lambda";
 import * as AWSConstructs from "@cuckoointernet/aws-constructs";
 
 class ExampleFunction extends AWSConstructs.lambda.Function {
-  constructor(scope: Construct, id: string, props: lambda.FunctionProps, customProps?: CustomLambdaProps) {
+  constructor(
+    scope: Construct,
+    id: string,
+    props: lambda.FunctionProps,
+    customProps?: CustomLambdaProps
+  ) {
     super(
       scope,
       ExampleFunction.name,
@@ -89,6 +98,41 @@ class ExampleFunction extends AWSConstructs.lambda.Function {
       },
       {
         // Custom AWS Construct options
+      }
+    );
+  }
+}
+```
+
+## `lambda.NodejsFunction`
+
+As well as the [usual defaults](https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.aws_lambda_nodejs.NodejsFunction.html#construct-props), this construct will additionally configure the same properties as [`lambda.Function`](#lambda.function). This construct is specifically aimed at taking advantage of the same great defaults, but giving the option to use [`esbuild`](https://esbuild.github.io) to build Lambda source code.
+
+### Usage
+
+```typescript
+import * as lambdaNode from "aws-cdk-lib/aws-lambda-nodejs";
+import * as CuckooConstructs from "@cuckoointernet/cuckoo-constructs";
+
+class ExampleFunction extends CuckooConstructs.lambda.NodejsFunction {
+  constructor(
+    scope: Construct,
+    id: string,
+    props: lambdaNode.NodejsFunctionProps,
+    customProps?: CustomLambdaProps
+  ) {
+    super(
+      scope,
+      ExampleFunction.name,
+      {
+        entry: "src/lambda/node-mock-handler.ts",
+        handler: "handleTheStuff",
+
+        // To override the default behaviour of this construct you can supply your own props here...
+        // See: https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.aws_lambda.Function.html#construct-props
+      },
+      {
+        // Custom Cuckoo Construct options
       }
     );
   }

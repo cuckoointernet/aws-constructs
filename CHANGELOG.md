@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.2.0](https://github.com/cuckoointernet/aws-constructs/compare/v1.1.0...v1.2.0) (2023-09-28)
+
+
+### Features
+
+* add NodejsFunction construct and create common alarm infra ([#23](https://github.com/cuckoointernet/aws-constructs/issues/23)) ([8db3112](https://github.com/cuckoointernet/aws-constructs/commit/8db3112bafe40681823f8d5c3625c4200408e686))
+
+
+### Bug Fixes
+
+* update dependencies to latest versions with security fixes ([#21](https://github.com/cuckoointernet/aws-constructs/issues/21)) ([ec24592](https://github.com/cuckoointernet/aws-constructs/commit/ec24592bcac9f0f02d5c52a64b6b61f182395e7d))
+
 ## [1.1.0](https://github.com/cuckoointernet/aws-constructs/compare/v1.0.0...v1.1.0) (2023-08-29)
 
 

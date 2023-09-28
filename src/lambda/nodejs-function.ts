@@ -2,12 +2,26 @@ import { type Construct } from "constructs";
 import * as logs from "aws-cdk-lib/aws-logs";
 import * as cdk from "aws-cdk-lib";
 import * as lambda from "aws-cdk-lib/aws-lambda";
+import * as nodejs from "aws-cdk-lib/aws-lambda-nodejs";
 import type * as cloudwatch from "aws-cdk-lib/aws-cloudwatch";
 import * as iam from "aws-cdk-lib/aws-iam";
 import { getContextByPath } from "../utils/context-by-path";
-import { type CustomLambdaProps, createAlarms } from "./common";
+import { createAlarms } from "./common";
 
 type PartialBy<T, K extends keyof T> = Omit<T, K> & Partial<Pick<T, K>>;
+type CustomAlarmOptions = Omit<
+  cloudwatch.CreateAlarmOptions,
+  "alarmDescription"
+>;
+
+type CustomLambdaProps = {
+  errorsAlarmOptions?: CustomAlarmOptions;
+  throttlesAlarmOptions?: CustomAlarmOptions;
+  durationAlarmOptions?: CustomAlarmOptions;
+  memoryUtilizationAlarmOptions?: CustomAlarmOptions;
+  disableAlarmNotifications?: boolean;
+  ssmParameterPaths?: string[];
+};
 
 /**
  * As well as the [usual defaults](https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.aws_lambda.Function.html#construct-props), this construct will additionally configure the following for you:
@@ -26,7 +40,7 @@ type PartialBy<T, K extends keyof T> = Omit<T, K> & Partial<Pick<T, K>>;
  * - You can override the default alarms by providing a 4th parameter to customise their configuration
  * - You can configure access to SSM Parameters by providing the `ssmParameterPaths` property via the 4th parameter
  */
-export class Function extends lambda.Function {
+export class NodejsFunction extends nodejs.NodejsFunction {
   public readonly throttlesAlarm: cloudwatch.Alarm;
   public readonly errorsAlarm: cloudwatch.Alarm;
   public readonly durationAlarm: cloudwatch.Alarm;
@@ -35,7 +49,7 @@ export class Function extends lambda.Function {
   constructor(
     scope: Construct,
     id: string,
-    props: PartialBy<lambda.FunctionProps, "runtime">,
+    props: PartialBy<nodejs.NodejsFunctionProps, "runtime">,
     customProps?: CustomLambdaProps
   ) {
     const customer = scope.node.tryGetContext("CUSTOMER") as string | undefined;
@@ -60,7 +74,7 @@ export class Function extends lambda.Function {
       LOG_LEVEL: logLevel,
     };
 
-    const defaultFunctionProps: Partial<lambda.FunctionProps> = {
+    const defaultFunctionProps: Partial<nodejs.NodejsFunctionProps> = {
       architecture: lambda.Architecture.ARM_64,
       description: `${id}-${environment}`,
       runtime: lambda.Runtime.NODEJS_18_X,
@@ -68,8 +82,8 @@ export class Function extends lambda.Function {
       tracing: lambda.Tracing.ACTIVE,
     };
 
-    const mergedProps: lambda.FunctionProps = {
-      ...(defaultFunctionProps as lambda.FunctionProps),
+    const mergedProps: nodejs.NodejsFunctionProps = {
+      ...(defaultFunctionProps as nodejs.NodejsFunctionProps),
       ...props,
       environment: {
         ...defaultEnvironment,

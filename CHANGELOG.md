@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.1](https://github.com/cuckoointernet/aws-constructs/compare/v1.2.0...v1.2.1) (2023-10-11)
+
+
+### Bug Fixes
+
+* **alarm:** Make lambda error alarm look at correct stat ([#24](https://github.com/cuckoointernet/aws-constructs/issues/24)) ([163d2ad](https://github.com/cuckoointernet/aws-constructs/commit/163d2ad12267f0d37408a85da4197e575a58324c))
+
 ## [1.2.0](https://github.com/cuckoointernet/aws-constructs/compare/v1.1.0...v1.2.0) (2023-09-28)
 
 

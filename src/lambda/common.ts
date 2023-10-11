@@ -59,7 +59,7 @@ export const createAlarms = ({
 
   const errorsAlarm = lambdaFunction
     .metricErrors({
-      statistic: "Maximum",
+      statistic: "Sum",
     })
     .createAlarm(lambdaFunction, "Errors", {
       ...defaultErrorAlarmOptions,

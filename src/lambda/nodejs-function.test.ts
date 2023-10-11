@@ -294,7 +294,7 @@ describe("NodejsFunction", () => {
 
       template.hasResourceProperties("AWS::CloudWatch::Alarm", {
         MetricName: "Errors",
-        Statistic: "Maximum",
+        Statistic: "Sum",
         ComparisonOperator: "GreaterThanOrEqualToThreshold",
         Threshold: 1,
         EvaluationPeriods: 1,
@@ -475,7 +475,7 @@ describe("NodejsFunction", () => {
 
       template.hasResourceProperties("AWS::CloudWatch::Alarm", {
         MetricName: "Errors",
-        Statistic: "Maximum",
+        Statistic: "Sum",
         ComparisonOperator: "GreaterThanOrEqualToThreshold",
         Threshold: 2,
         EvaluationPeriods: 5,

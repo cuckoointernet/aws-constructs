@@ -149,8 +149,8 @@ describe("NodejsFunction", () => {
     });
   });
 
-  describe("logRetention", () => {
-    it("should default to six months", () => {
+  describe("logs", () => {
+    it("should create a log group with 6 months of log retention", () => {
       const app = new cdk.App({ context });
 
       class UnitTestStack extends cdk.Stack {
@@ -164,12 +164,13 @@ describe("NodejsFunction", () => {
       }
       const template = Template.fromStack(new UnitTestStack(app));
 
-      template.hasResourceProperties("Custom::LogRetention", {
+      template.hasResourceProperties("AWS::Logs::LogGroup", {
         RetentionInDays: 180,
+        LogGroupName: "/aws/lambda/FunctionLogGroup-prod",
       });
     });
 
-    it("should be overridable via props", () => {
+    it("should allow log retention to be overwritten", () => {
       const app = new cdk.App({ context });
 
       class UnitTestStack extends cdk.Stack {
@@ -182,11 +183,11 @@ describe("NodejsFunction", () => {
           });
         }
       }
-
       const template = Template.fromStack(new UnitTestStack(app));
 
-      template.hasResourceProperties("Custom::LogRetention", {
+      template.hasResourceProperties("AWS::Logs::LogGroup", {
         RetentionInDays: 365,
+        LogGroupName: "/aws/lambda/FunctionLogGroup-prod",
       });
     });
   });

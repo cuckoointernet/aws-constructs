@@ -60,17 +60,22 @@ export class Function extends lambda.Function {
       LOG_LEVEL: logLevel,
     };
 
+    const { logRetention, ...restProps } = props;
+
     const defaultFunctionProps: Partial<lambda.FunctionProps> = {
       architecture: lambda.Architecture.ARM_64,
       description: `${id}-${environment}`,
       runtime: lambda.Runtime.NODEJS_18_X,
-      logRetention: logs.RetentionDays.SIX_MONTHS,
       tracing: lambda.Tracing.ACTIVE,
+      logGroup: new logs.LogGroup(scope, `${id}LogGroup`, {
+        logGroupName: `/aws/lambda/${id}LogGroup-${environment}`,
+        retention: logRetention ?? logs.RetentionDays.SIX_MONTHS,
+      }),
     };
 
     const mergedProps: lambda.FunctionProps = {
       ...(defaultFunctionProps as lambda.FunctionProps),
-      ...props,
+      ...restProps,
       environment: {
         ...defaultEnvironment,
         ...props.environment,

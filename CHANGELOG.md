@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.0](https://github.com/cuckoointernet/aws-constructs/compare/v1.2.1...v1.3.0) (2024-04-08)
+
+
+### Features
+
+* **function:** Migrate logRetention usage to logGroup ([#39](https://github.com/cuckoointernet/aws-constructs/issues/39)) ([ade14f6](https://github.com/cuckoointernet/aws-constructs/commit/ade14f602edb01f0f37e23f170b3828f3e4e373b))
+
 ## [1.2.1](https://github.com/cuckoointernet/aws-constructs/compare/v1.2.0...v1.2.1) (2023-10-11)
 
 

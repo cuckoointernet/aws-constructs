@@ -10,9 +10,9 @@ jobs:
       matrix:
         # These correlate to the latest two runtimes supported by Lambda
         # See: https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html
-        node: [ 16, 18 ]
+        node: [16, 18]
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node }}
@@ -28,9 +28,9 @@ jobs:
       matrix:
         # These correlate to the latest two runtimes supported by Lambda
         # See: https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html
-        node: [ 16, 18 ]
+        node: [16, 18]
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node }}

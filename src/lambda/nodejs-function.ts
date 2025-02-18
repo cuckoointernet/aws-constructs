@@ -6,22 +6,13 @@ import * as nodejs from "aws-cdk-lib/aws-lambda-nodejs";
 import type * as cloudwatch from "aws-cdk-lib/aws-cloudwatch";
 import * as iam from "aws-cdk-lib/aws-iam";
 import { getContextByPath } from "../utils/context-by-path";
-import { createAlarms } from "./common";
+import { createAlarms, type CustomLambdaProps } from "./common";
 
 type PartialBy<T, K extends keyof T> = Omit<T, K> & Partial<Pick<T, K>>;
 type CustomAlarmOptions = Omit<
   cloudwatch.CreateAlarmOptions,
   "alarmDescription"
 >;
-
-type CustomLambdaProps = {
-  errorsAlarmOptions?: CustomAlarmOptions;
-  throttlesAlarmOptions?: CustomAlarmOptions;
-  durationAlarmOptions?: CustomAlarmOptions;
-  memoryUtilizationAlarmOptions?: CustomAlarmOptions;
-  disableAlarmNotifications?: boolean;
-  ssmParameterPaths?: string[];
-};
 
 /**
  * As well as the [usual defaults](https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.aws_lambda.Function.html#construct-props), this construct will additionally configure the following for you:
@@ -79,7 +70,7 @@ export class NodejsFunction extends nodejs.NodejsFunction {
     const defaultFunctionProps: Partial<nodejs.NodejsFunctionProps> = {
       architecture: lambda.Architecture.ARM_64,
       description: `${id}-${environment}`,
-      runtime: lambda.Runtime.NODEJS_18_X,
+      runtime: customProps?.runtime ?? lambda.Runtime.NODEJS_18_X,
       tracing: lambda.Tracing.ACTIVE,
       logGroup: new logs.LogGroup(scope, `${id}LogGroup`, {
         logGroupName: `/aws/lambda/${id}LogGroup-${environment}`,
@@ -144,7 +135,6 @@ export class NodejsFunction extends nodejs.NodejsFunction {
           )
         ),
       });
-
       this.addToRolePolicy(ssmPolicy);
     }
   }

@@ -5,7 +5,7 @@ import * as lambda from "aws-cdk-lib/aws-lambda";
 import type * as cloudwatch from "aws-cdk-lib/aws-cloudwatch";
 import * as iam from "aws-cdk-lib/aws-iam";
 import { getContextByPath } from "../utils/context-by-path";
-import { type CustomLambdaProps, createAlarms } from "./common";
+import { createAlarms, type CustomLambdaProps } from "./common";
 
 type PartialBy<T, K extends keyof T> = Omit<T, K> & Partial<Pick<T, K>>;
 
@@ -65,7 +65,7 @@ export class Function extends lambda.Function {
     const defaultFunctionProps: Partial<lambda.FunctionProps> = {
       architecture: lambda.Architecture.ARM_64,
       description: `${id}-${environment}`,
-      runtime: lambda.Runtime.NODEJS_18_X,
+      runtime: customProps?.runtime ?? lambda.Runtime.NODEJS_18_X,
       tracing: lambda.Tracing.ACTIVE,
       logGroup: new logs.LogGroup(scope, `${id}LogGroup`, {
         logGroupName: `/aws/lambda/${id}LogGroup-${environment}`,
@@ -130,7 +130,6 @@ export class Function extends lambda.Function {
           )
         ),
       });
-
       this.addToRolePolicy(ssmPolicy);
     }
   }

@@ -53,7 +53,7 @@ describe("function", () => {
             description: "unrelated",
             handler: "index.handler",
             code: lambda.Code.fromAsset(path.join(__dirname, ".")),
-            runtime: lambda.Runtime.NODEJS_12_X,
+            runtime: lambda.Runtime.NODEJS_18_X,
           });
         }
       }
@@ -98,7 +98,7 @@ describe("function", () => {
           new Function(this, "Function", {
             handler: "index.handler",
             code: lambda.Code.fromAsset(path.join(__dirname, ".")),
-            runtime: lambda.Runtime.NODEJS_12_X,
+            runtime: lambda.Runtime.NODEJS_18_X,
           });
         }
       }
@@ -106,7 +106,7 @@ describe("function", () => {
       const template = Template.fromStack(new UnitTestStack(app));
 
       template.hasResourceProperties("AWS::Lambda::Function", {
-        Runtime: "nodejs12.x",
+        Runtime: "nodejs18.x",
       });
     });
   });

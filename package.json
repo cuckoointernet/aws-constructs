@@ -23,7 +23,7 @@
     "get-value": "3.0.1"
   },
   "peerDependencies": {
-    "aws-cdk-lib": "^2.136.0",
+    "aws-cdk-lib": "2.179.0",
     "constructs": "^10.2.70",
     "esbuild": "^0.19.3"
   },

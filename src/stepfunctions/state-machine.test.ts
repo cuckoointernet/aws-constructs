@@ -29,7 +29,7 @@ describe("state machine", () => {
           const definition = new sfn.Pass(this, "InitialPass");
 
           new StateMachine(this, "StateMachine", {
-            definition,
+            definitionBody: sfn.DefinitionBody.fromChainable(definition),
           });
         }
       }
@@ -51,7 +51,7 @@ describe("state machine", () => {
           const definition = new sfn.Pass(this, "InitialPass");
 
           new StateMachine(this, "StateMachine", {
-            definition,
+            definitionBody: sfn.DefinitionBody.fromChainable(definition),
             stateMachineType: sfn.StateMachineType.STANDARD,
           });
         }
@@ -76,7 +76,7 @@ describe("state machine", () => {
           const definition = new sfn.Pass(this, "InitialPass");
 
           new StateMachine(this, "StateMachine", {
-            definition,
+            definitionBody: sfn.DefinitionBody.fromChainable(definition),
           });
         }
       }
@@ -98,7 +98,7 @@ describe("state machine", () => {
           const definition = new sfn.Pass(this, "InitialPass");
 
           new StateMachine(this, "StateMachine", {
-            definition,
+            definitionBody: sfn.DefinitionBody.fromChainable(definition),
             timeout: cdk.Duration.minutes(4),
           });
         }
@@ -123,7 +123,7 @@ describe("state machine", () => {
           const definition = new sfn.Pass(this, "InitialPass");
 
           new StateMachine(this, "StateMachine", {
-            definition,
+            definitionBody: sfn.DefinitionBody.fromChainable(definition),
           });
         }
       }
@@ -147,7 +147,7 @@ describe("state machine", () => {
           const definition = new sfn.Pass(this, "InitialPass");
 
           new StateMachine(this, "StateMachine", {
-            definition,
+            definitionBody: sfn.DefinitionBody.fromChainable(definition),
             tracingEnabled: false,
           });
         }
@@ -156,7 +156,9 @@ describe("state machine", () => {
       const template = Template.fromStack(new UnitTestStack(app));
 
       template.hasResourceProperties("AWS::StepFunctions::StateMachine", {
-        TracingConfiguration: Match.absent(),
+        TracingConfiguration: {
+          Enabled: false,
+        },
       });
     });
   });
@@ -172,7 +174,7 @@ describe("state machine", () => {
           const definition = new sfn.Pass(this, "InitialPass");
 
           new StateMachine(this, "StateMachine", {
-            definition,
+            definitionBody: sfn.DefinitionBody.fromChainable(definition),
           });
         }
       }
@@ -201,7 +203,7 @@ describe("state machine", () => {
           const definition = new sfn.Pass(this, "InitialPass");
 
           new StateMachine(this, "StateMachine", {
-            definition,
+            definitionBody: sfn.DefinitionBody.fromChainable(definition),
           });
         }
       }
@@ -235,7 +237,7 @@ describe("state machine", () => {
             this,
             "StateMachine",
             {
-              definition,
+              definitionBody: sfn.DefinitionBody.fromChainable(definition),
             },
             {
               failedExecutionsAlarmOptions: {
@@ -293,7 +295,7 @@ describe("state machine", () => {
           const definition = new sfn.Pass(this, "InitialPass");
 
           new StateMachine(this, "StateMachine", {
-            definition,
+            definitionBody: sfn.DefinitionBody.fromChainable(definition),
           });
         }
       }
@@ -342,7 +344,7 @@ describe("state machine", () => {
           const definition = new sfn.Pass(this, "InitialPass");
 
           new StateMachine(this, "StateMachine", {
-            definition,
+            definitionBody: sfn.DefinitionBody.fromChainable(definition),
           });
         }
       }
@@ -375,7 +377,7 @@ describe("state machine", () => {
             this,
             "StateMachine",
             {
-              definition,
+              definitionBody: sfn.DefinitionBody.fromChainable(definition),
             },
             {
               disableAlarmNotifications: true,

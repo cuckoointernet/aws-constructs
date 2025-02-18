@@ -28,7 +28,7 @@
     "esbuild": "^0.19.3"
   },
   "devDependencies": {
-    "@tsconfig/node18": "18.2.2",
+    "@tsconfig/node18": "18.2.4",
     "@types/get-value": "3.0.3",
     "@types/jest": "29.5.4",
     "@types/node": "20.6.0",

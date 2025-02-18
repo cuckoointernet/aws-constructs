@@ -17,6 +17,7 @@ export type CustomLambdaProps = {
   memoryUtilizationAlarmOptions?: CustomAlarmOptions;
   disableAlarmNotifications?: boolean;
   ssmParameterPaths?: string[];
+  runtime?: lambda.Runtime;
 };
 
 type AlarmOptions = {

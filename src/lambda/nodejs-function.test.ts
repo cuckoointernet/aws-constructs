@@ -51,7 +51,7 @@ describe("NodejsFunction", () => {
           new NodejsFunction(this, "Function", {
             description: "unrelated",
             entry: path.join(__dirname, "test/mock-handler.ts"),
-            runtime: lambda.Runtime.NODEJS_12_X,
+            runtime: lambda.Runtime.NODEJS_18_X,
           });
         }
       }
@@ -94,7 +94,7 @@ describe("NodejsFunction", () => {
 
           new NodejsFunction(this, "Function", {
             entry: path.join(__dirname, "test/mock-handler.ts"),
-            runtime: lambda.Runtime.NODEJS_12_X,
+            runtime: lambda.Runtime.NODEJS_18_X,
           });
         }
       }
@@ -102,7 +102,7 @@ describe("NodejsFunction", () => {
       const template = Template.fromStack(new UnitTestStack(app));
 
       template.hasResourceProperties("AWS::Lambda::Function", {
-        Runtime: "nodejs12.x",
+        Runtime: "nodejs18.x",
       });
     });
   });

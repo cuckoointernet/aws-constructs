@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.0](https://github.com/cuckoointernet/aws-constructs/compare/v1.3.0...v1.4.0) (2025-02-18)
+
+
+### Features
+
+* allow lambda functions to define node runtime ([#48](https://github.com/cuckoointernet/aws-constructs/issues/48)) ([cb9d148](https://github.com/cuckoointernet/aws-constructs/commit/cb9d148883a69d278ab010dd57bd1dd945fca4d7))
+
 ## [1.3.0](https://github.com/cuckoointernet/aws-constructs/compare/v1.2.1...v1.3.0) (2024-04-08)
 
 
